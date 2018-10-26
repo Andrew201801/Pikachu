@@ -102,7 +102,7 @@
 
     </style>
 
-    <script src="/statics/js/jquery.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
     <script src="/semantic/dist/semantic.js"></script>
 
 
@@ -156,7 +156,7 @@
             <h1 class="ui inverted header">
                 Pikachu BlockChain
             </h1>
-            <h2>Do whatever you want when you want to.</h2>
+            <h2>Demo HomePage</h2>
             <a class="ui huge primary button" href="/login">Get Started <i class="right arrow icon"></i></a>
         </div>
 
@@ -166,13 +166,13 @@
         <div class="ui middle aligned stackable grid container">
             <div class="row">
                 <div class="eight wide column">
-                    <h3 class="ui header">We Help Companies and Companions</h3>
+                    <h3 class="ui header">Demo</h3>
                     <p>We can give your company superpowers to do things that they never thought possible. Let us delight your customers and empower your needs...through pure data analytics.</p>
                     <h3 class="ui header">We Make Bananas That Can Dance</h3>
                     <p>Yes that's right, you thought it was the stuff of dreams, but even bananas can be bioengineered.</p>
                 </div>
                 <div class="six wide right floated column">
-                    <img src="/statics/image/Placeholder.png" class="ui large bordered rounded image">
+                    <img src="/image/Demo.png" class="ui large bordered rounded image">
                 </div>
             </div>
             <div class="row">
@@ -194,7 +194,7 @@
                 <div class="column">
                     <h3>"I shouldn't have gone with their competitor."</h3>
                     <p>
-                        <img src="/statics/image/Placeholder.png" class="ui avatar image"> <b>Nan</b> Chief Fun Officer Acme Toys
+                        <img src="/image/Placeholder.png" class="ui avatar image"> <b>Nan</b> Chief Fun Officer Acme Toys
                     </p>
                 </div>
             </div>

@@ -102,7 +102,7 @@
 
     </style>
 
-    <script src="/statics/js/jquery.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
     <script src="/semantic/dist/semantic.js"></script>
 
 
