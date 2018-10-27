@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
     <!-- Site Properties -->
-    <title>Success</title>
+    <title>Welcome User</title>
     <%--<link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.css">--%>
     <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.css">
 
@@ -115,10 +115,14 @@
             <a class="toc item">
                 <i class="sidebar icon"></i>
             </a>
-            <a class="item" href="/index">Home</a>
+            <a class="item" href="/indexUser">Home</a>
+            <a class="active item" href="/welcomeUser">User Center</a>
+            <a class="item" href="/trade">Trade</a>
             <div class="right item">
-                <a class="ui inverted button" href="/login">Log in</a>
-                <a class="ui inverted button" href="/sign">Sign Up</a>
+                <div class="ui inverted button disabled">
+                    ${sessionScope.login.accountID}
+                </div>
+                <a class="ui inverted button" href="/logout">Sign Out</a>
             </div>
         </div>
     </div>
@@ -126,13 +130,8 @@
 <br><br><br><br><br><br><br><br><br>
 
 <div class="ui text container">
-    <h2 class="ui header">Success Login</h2>
+    <h2 class="ui header">Welcome Back</h2>
     <br>
-    <div class="success">
-        Confirmation message : ${success}
-        <br>
-        Please check again your Account ID: ${member.accountID}.
-    </div>
 </div>
 
 

@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -141,26 +142,37 @@
         <h2 class="ui header">
             Log-in to your account
         </h2>
-        <form class="ui large form">
+        <form:form method="POST" modelAttribute="login" class="ui large form">
             <div class="ui stacked segment">
                 <div class="field">
                     <div class="ui left icon input">
                         <i class="user icon"></i>
-                        <input type="text" name="email" placeholder="E-mail address">
+                        <form:input type="text" path="accountID" placeholder="Account ID"/>
+                    </div>
+                    <div class="has-error" style="color: red">
+                        <form:errors path="accountID" class="help-inline"/>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui left icon input">
                         <i class="lock icon"></i>
-                        <input type="password" name="password" placeholder="Password">
+                        <form:input type="password" path="password" placeholder="Password"/>
                     </div>
+                    <div class="has-error" style="color: red">
+                        <form:errors path="password" class="help-inline"/>
+                    </div>
+                    <%--<div class="error" style="color: red">--%>
+                        <%--${error}--%>
+                    <%--</div>--%>
                 </div>
-                <div class="ui fluid large submit button">Login</div>
+                <button class="ui fluid large submit button" type="submit">Login</button>
+                <%--<a class="ui fluid large submit button" type="submit" >Login</a>--%>
             </div>
 
-            <div class="ui error message"></div>
+            <%--<div class="ui error message"></div>--%>
 
-        </form>
+        </form:form>
+
 
         <div class="ui message">
             New to us? <a href="/sign">Sign Up</a>

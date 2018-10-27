@@ -128,25 +128,6 @@
     <h1 class="ui dividing header">Sign Up</h1>
     <br><br>
     <form:form method="POST" modelAttribute="member" class="ui form">
-        <h3 class="ui dividing header">Personal Information</h3>
-        <div class="field">
-            <label>Name</label>
-            <div class="two fields">
-                <div class="field">
-                    <form:input type="text" path="firstName" placeholder="First Name"/>
-                    <div class="has-error" style="color: red">
-                        <form:errors path="firstName" class="help-inline"/>
-                    </div>
-                </div>
-                <div class="field">
-                    <form:input type="text" path="lastName" placeholder="Last Name"/>
-                    <div class="has-error" style="color: red">
-                        <form:errors path="lastName" class="help-inline"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
         <h3 class="ui dividing header">Login Information</h3>
         <div class="ui form">
             <div class="field">

@@ -2,13 +2,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Login</title>
     <!-- Standard Meta -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
     <!-- Site Properties -->
+    <title>Trade</title>
     <%--<link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.css">--%>
     <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.css">
 
@@ -98,24 +98,13 @@
                 font-size: 1.5em;
             }
         }
-        body {
-            background-color: white;
-        }
-        body > .grid {
-            height: 100%;
-        }
-        .image {
-            margin-top: -100px;
-        }
-        .column {
-            max-width: 450px;
-        }
 
 
     </style>
 
     <script src="/js/jquery.min.js"></script>
     <script src="/semantic/dist/semantic.js"></script>
+
 
 </head>
 <body>
@@ -126,60 +115,29 @@
             <a class="toc item">
                 <i class="sidebar icon"></i>
             </a>
-            <a class="item" href="/index">Home</a>
+            <a class="item" href="/indexUser">Home</a>
+            <a class="item" href="/welcomeUser">User Center</a>
+            <a class="active item" href="/trade">Trade</a>
             <div class="right item">
-                <a class="ui inverted button" href="/login">Log in</a>
-                <a class="ui inverted button" href="/sign">Sign Up</a>
+                <div class="ui inverted button disabled">
+                    ${sessionScope.login.accountID}
+                </div>
+                <a class="ui inverted button" href="/logout">Sign Out</a>
             </div>
         </div>
     </div>
 </div>
+<br><br><br><br><br><br><br><br><br>
 
-
-
-<div class="ui middle aligned center aligned grid">
-    <div class="column">
-        <h2 class="ui header">
-            Log-in to your account
-        </h2>
-        <form:form method="POST" modelAttribute="login" class="ui large form">
-            <div class="ui stacked segment">
-                <div class="field">
-                    <div class="ui left icon input">
-                        <i class="user icon"></i>
-                        <form:input type="text" path="accountID" placeholder="Account ID"/>
-                    </div>
-                    <div class="has-error" style="color: red">
-                        <form:errors path="accountID" class="help-inline"/>
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="ui left icon input">
-                        <i class="lock icon"></i>
-                        <form:input type="password" path="password" placeholder="Password"/>
-                    </div>
-                    <div class="has-error" style="color: red">
-                        <form:errors path="password" class="help-inline"/>
-                    </div>
-                    <%--<div class="error" style="color: red">--%>
-                        <%--${error}--%>
-                    <%--</div>--%>
-                </div>
-                <button class="ui fluid large submit button" type="submit">Login</button>
-                <%--<a class="ui fluid large submit button" type="submit" >Login</a>--%>
-            </div>
-
-            <%--<div class="ui error message"></div>--%>
-
-        </form:form>
-
-
-        <div class="ui message">
-            New to us? <a href="/sign">Sign Up</a>
-        </div>
-    </div>
+<div class="ui text container">
+    <h2 class="ui header">Welcome Back</h2>
+    <br>
 </div>
 
+
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <div class="pusher">
     <div class="ui inverted vertical footer segment">
         <div class="ui center aligned container">
@@ -189,5 +147,7 @@
     </div>
 </div>
 
+
 </body>
 </html>
+
