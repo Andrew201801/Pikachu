@@ -35,7 +35,7 @@ async function userEarnCredit(userearncredit) {
  */
 async function userLoseCredit(userloseCredit) {
     //update memberID nowCredit
-    userloseCredit.member.Info.Credit = userloseCredit.member.Credit - userloseCredit.Credit;
+    userloseCredit.member.Info.Credit = userloseCredit.member.Info.Credit - userloseCredit.Credit;
   
     //update memberID
     const memberRegistry = await getParticipantRegistry('org.pikachu2.biznet.Member');
@@ -100,12 +100,12 @@ async function userEarnPoints(userearnPoints) {
 async function userUsePoints(userusePoints) {
 
   //check if member has sufficient points
-  if (userusePoints.member.Info.points < userusePoints.Info.points) {
+  if (userusePoints.member.Info.points < userusePoints.points) {
     throw new Error('Insufficient points');
   }
 
   //update member points
-  userusePoints.member.Info.points = userusePoints.member.Info.points - userusePoints.points
+  userusePoints.member.Info.points = userusePoints.member.Info.points - userusePoints.points;
 
   //update member
   const memberRegistry = await getParticipantRegistry('org.pikachu2.biznet.Member');
@@ -113,20 +113,20 @@ async function userUsePoints(userusePoints) {
 
   // check if company exists on the network
   const companyRegistry = await getParticipantRegistry('org.pikachu2.biznet.Company');
-  companyExists = await partnerRegistry.exists(userusePoints.company.id);
+  companyExists = await companyRegistry.exists(userusePoints.company.id);
   if (companyExists == false) {
     throw new Error('company does not exist - check id');
   }
 }
 /**
  * EarnPoints transaction
- * @param {org.pikachu2.biznet.userEarnPoints} userearnPoints
+ * @param {org.pikachu2.biznet.companyEarnPoints} companyearnPoints
  * @transaction
  */
 async function companyEarnPoints(companyearnPoints) {
 
   //update company points
-  companyearnPoints.company.Info.points = companyearnPoints.company.Info.points + companyearnPoints.Info.points;
+  companyearnPoints.company.Info.points = companyearnPoints.company.Info.points + companyearnPoints.points;
 
   //update company
   const memberRegistry = await getParticipantRegistry('org.pikachu2.biznet.Company');
@@ -141,15 +141,15 @@ async function companyEarnPoints(companyearnPoints) {
 async function companyUsePoints(companyusePoints) {
 
   //check if company has sufficient points
-  if (companyusePoints.member.Info.points < companyusePoints.Info.points) {
-    throw new Error('Insufficient points');
+  if (companyusePoints.company.Info.points < companyusePoints.points) {
+   throw new Error('Insufficient points');
   }
 
   //update company points
-  companyusePoints.company.Info.points = companyusePoints.company.Info.points - companyusePoints.Info.points
+  companyusePoints.company.Info.points = companyusePoints.company.Info.points - companyusePoints.points;
 
   //update company
   const companyRegistry = await getParticipantRegistry('org.pikachu2.biznet.Company');
-  await companyRegistry.update(companyusePoints.member);
+  await companyRegistry.update(companyusePoints.company);
 
 }
