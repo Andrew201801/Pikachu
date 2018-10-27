@@ -18,7 +18,7 @@ Members：余志杰、孙瑞、屈福阳、马润薪、孙翼
 
 
 
-# BitRun Hackathon 第一天
+# BitRun Hackathon 第二天
 ##凌晨，Bug 修复
 - 对 MVC 部分进行 Bug 修复并重新 Push 上 GitHub
 
