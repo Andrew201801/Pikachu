@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-namespace org.pikachu.biznet
+namespace org.pikachu2.biznet
 
 //收入信用点的时间
 enum CreditHistory {
@@ -38,7 +38,7 @@ participant Member identified by  mID{
 //company信息
 participant Company identified by id{
   o String id
-  o commonInfo Info
+  o CommonInfo Info
   o String name optional
 }
 
@@ -58,7 +58,6 @@ transaction LoseCredit {
 
 //更新数据
 transaction UpdateHistory{
-  o DataTime time
   --> Member member
   --> Company company optional
 }
