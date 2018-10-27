@@ -13,16 +13,12 @@
  */
 namespace org.pikachu2.biznet
 
-//收入信用点的时间
-enum CreditHistory {
-  o credit
-  o createtime
-}
+
 
 //基本信息
 concept CommonInfo {
-  o CreditHistory[] historyInfo
-  o Integer nowCredit
+  o Integer points
+  o Integer Credit
   o String phoneNumber optional
   o String firstName optional
   o String lastName optional
@@ -42,22 +38,51 @@ participant Company identified by id{
   o String name optional
 }
 
-//获得信用点
-transaction EarnCredit {
-  o Integer nowCredit
-  --> Company company
+//user
+transaction userEarnCredit {
+  o Integer Credit
   --> Member member
 }
 
-//失去信用点
-transaction LoseCredit {
-  o Integer nowCredit
-  --> Company company
+transaction userLoseCredit {
+  o Integer Credit
   --> Member member
+}
+//company
+transaction companyLoseCredit {
+  o Integer Credit
+  --> Company company
+}
+transaction companyEarnCredit {
+  o Integer Credit
+  --> Company company
 }
 
-//更新数据
-transaction UpdateHistory{
-  --> Member member
-  --> Company company optional
+//points earned
+transaction userEarnPoints {
+    o Integer points
+    --> Company company
+    --> Member member    
 }
+
+//points spent
+transaction userUsePoints {
+    o Integer points
+    --> Company company  
+    --> Member member
+}
+
+//points earned
+transaction companyEarnPoints {
+    o Integer points
+    --> Company company    
+}
+
+//points spent
+transaction companyUsePoints {
+    o Integer points
+    --> Company company  
+}
+
+
+
