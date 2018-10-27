@@ -27,7 +27,7 @@ public class MemberOperationDaoImpl implements memberOperationDao {
 
     public Member memberQuery(int id) throws Exception {
         Member member = new Member();
-        member.setAsset("0");
+//        member.setAsset("0");
         return member;
     }
 }

@@ -13,8 +13,9 @@ public class Member {
     @Length(min = 6, max = 30)
     private String password;
 
-    @NotEmpty
-    private String asset;
+    private String credit;
+
+    private String point;
 
     public void setAccountID(String accountID) {
         this.accountID = accountID;
@@ -24,8 +25,12 @@ public class Member {
         this.password = password;
     }
 
-    public void setAsset(String asset) {
-        this.asset = asset;
+    public void setCredit(String credit) {
+        this.credit = credit;
+    }
+
+    public void setPoint(String point) {
+        this.point = point;
     }
 
     public String getAccountID() {
@@ -36,12 +41,16 @@ public class Member {
         return password;
     }
 
-    public String getAsset() {
-        return asset;
+    public String getCredit() {
+        return credit;
     }
 
-    @Override
-    public String toString() {
-        return "Member " + accountID + " " + password+" "+asset;
+    public String getPoint() {
+        return point;
     }
+
+    //    @Override
+//    public String toString() {
+//        return "Member " + accountID + " " + password + " " + asset;
+//    }
 }

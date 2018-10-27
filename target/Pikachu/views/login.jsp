@@ -161,9 +161,11 @@
                     <div class="has-error" style="color: red">
                         <form:errors path="password" class="help-inline"/>
                     </div>
-                    <%--<div class="error" style="color: red">--%>
-                        <%--${error}--%>
-                    <%--</div>--%>
+                </div>
+                <div class="field">
+                    <div class="error" style="color: red">
+                            ${error}
+                    </div>
                 </div>
                 <button class="ui fluid large submit button" type="submit">Login</button>
                 <%--<a class="ui fluid large submit button" type="submit" >Login</a>--%>

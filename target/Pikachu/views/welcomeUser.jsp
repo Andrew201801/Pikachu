@@ -120,7 +120,13 @@
             <a class="item" href="/trade">Trade</a>
             <div class="right item">
                 <div class="ui inverted button disabled">
-                    ${sessionScope.login.accountID}
+                    ID:&nbsp;${sessionScope.login.accountID}
+                </div>
+                <div class="ui inverted button disabled">
+                    Credit:&nbsp;${sessionScope.login.credit}
+                </div>
+                <div class="ui inverted button disabled">
+                    Point:&nbsp;${sessionScope.login.point}
                 </div>
                 <a class="ui inverted button" href="/logout">Sign Out</a>
             </div>

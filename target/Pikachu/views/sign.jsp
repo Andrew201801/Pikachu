@@ -10,6 +10,7 @@
     <!-- Site Properties -->
     <title>Homepage</title>
     <%--<link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.css">--%>
+    <link rel="stylesheet" type="text/css" href="/semantic/dist/components/checkbox.css">
     <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.css">
 
     <style type="text/css">
@@ -103,6 +104,12 @@
     </style>
 
     <script src="/js/jquery.min.js"></script>
+    <script>
+        $('.ui.checkbox').checkbox();   //使得单选框可以被选中
+    </script>
+    <script src="/semantic/dist/components/checkbox.js"></script>
+
+
     <script src="/semantic/dist/semantic.js"></script>
 
 
@@ -144,16 +151,33 @@
                     <form:errors path="password" class="help-inline"/>
                 </div>
             </div>
+            <div class="field">
+                <label>Type</label>
+                <select class="ui compact selection dropdown" name="typeCheck">
+                    <option value="member">Member</option>
+                    <option value="company">Company</option>
+                </select>
+            </div>
+
+            <%--<div class="field">--%>
+                <%--<div class="ui checkbox">--%>
+                    <%--<input type="checkbox" name="typeCheck" tabindex="0" class="hidden">--%>
+                    <%--<label>Register as Company</label>--%>
+                <%--</div>--%>
+            <%--</div>--%>
         </div>
 
         <br><br>
-        <div class="field">
-            <label>Developer Only</label>
-            <form:input type="text" name="asset" path="asset" placeholder="Asset"/>
-            <div class="has-error" style="color: red">
-                <form:errors path="asset" class="help-inline"/>
-            </div>
-        </div>
+
+
+
+        <%--<div class="field">--%>
+            <%--<label>Developer Only</label>--%>
+            <%--<form:input type="text" name="asset" path="asset" placeholder="Asset"/>--%>
+            <%--<div class="has-error" style="color: red">--%>
+                <%--<form:errors path="asset" class="help-inline"/>--%>
+            <%--</div>--%>
+        <%--</div>--%>
         <button class="ui button" type="submit">Submit</button>
         <div class="ui error message"></div>
     </form:form>
