@@ -4,6 +4,7 @@ import com.Pikachu.Bean.Login;
 import com.Pikachu.Bean.Member;
 import com.Pikachu.Bean.Status;
 import com.Pikachu.Bean.Transaction;
+import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -160,12 +161,12 @@ public class StatusController {
 
         String id = member.getAccountID();
 
-        String s1 = sendGet("http://35.211.105.21:3000/api/Company/" + id);
+        String s1 = sendGet("http://34.220.123.35:3000/api/Company/" + id);
         String s2 = sendGet("http://35.211.105.21:3000/api/Company/" + id);
-        String s3 = sendGet("http://35.211.105.21:3000/api/Company/" + id);
-        String s4 = sendGet("http://35.211.105.21:3000/api/Member/" + id);
+        String s3 = sendGet("http://59.191.138.72:3000/api/Company/" + id);
+        String s4 = sendGet("http://34.220.123.35:3000/api/Member/" + id);
         String s5 = sendGet("http://35.211.105.21:3000/api/Member/" + id);
-        String s6 = sendGet("http://35.211.105.21:3000/api/Member/" + id);
+        String s6 = sendGet("http://59.191.138.72:3000/api/Member/" + id);
 
         if (s1.equals("False") && s2.equals("False") && s3.equals("False") && s4.equals("False") && s5.equals("False") && s6.equals("False")) {
             String typeCheck = request.getParameter("typeCheck");
@@ -225,38 +226,52 @@ public class StatusController {
             return login(model);
         }
 
-        //Todo:获取到用户真正的Password，标记为truePassword
-        String truePassword = login.getPassword();
-//        String truePassword = "";
-        if (login.getPassword().equals(truePassword)) {
-            map.addAttribute("login", login);
-            map.addAttribute("accountID", login.getAccountID());
-            //Todo: login.set... 中调用API，直接map.addAttribute("point", 从API获取point)会存在不能获取到数据的情况
-            login.setPoint("1000");
-            login.setCredit("800");
-            map.addAttribute("credit", login.getCredit());
-            map.addAttribute("point", login.getPoint());
-
-            //以防万一我们给login对象赋值
-            //Todo: login.setCredit(...);
-            //Todo: login.setPoint(...);
-
-            //Todo: 在Session中添加用户的credit和point
-//        model.addAttribute("accountID", login.getAccountID());
-//            SessionScope sessionScope = new SessionScope();
-//            String temp=sessionScope.
-//            map.addAttribute("point", );
-            this.status.setAccountID(login.getAccountID());
-            this.status.setCredit("800");
-            this.status.setPoint("1000");
-            return "welcomeUser";
+        String id = login.getAccountID();
+        String password = login.getPassword();
+        String[] s = new String[6];
+        s[0] = sendGet("http://34.220.123.35:3000/api/Company/" + id);
+        s[1] = sendGet("http://35.211.105.21:3000/api/Company/" + id);
+        s[2] = sendGet("http://59.191.138.72:3000/api/Company/" + id);
+        s[3] = sendGet("http://34.220.123.35:3000/api/Member/" + id);
+        s[4] = sendGet("http://35.211.105.21:3000/api/Member/" + id);
+        s[5] = sendGet("http://59.191.138.72:3000/api/Member/" + id);
+        int flag = -1;
+        for (int i = 0; i < 6; i++) {
+            if (!s[i].equals("False")) {
+                flag = i;
+                break;
+            }
         }
-        //Todo: 如果用户名不存在也需要判断，然后将错误信息标记成不同的，下述代码中只假设了密码不对
-        //Todo: 在登录页中已经设定了Error的输出
+        if (flag == -1) {
+            model.addAttribute("error", "This ID is not existed.");
+            return "login";
+        } else {
+            JSONObject job = JSONObject.fromObject(s[flag]);
+            if (password.equals(JSONObject.fromObject(job.getString("Info")).getString("password"))) {
+//                String aid=job.getString("mID");
+                String point=JSONObject.fromObject(job.getString("Info")).getString("points");
+                String credit=JSONObject.fromObject(job.getString("Info")).getString("Credit");
+//                String apassword=JSONObject.fromObject(job.getString("Info")).getString("password");
+//                String type=job.getString("$class").substring(20);
 
-        model.addAttribute("error", "Error Password");
+//               储存链上获取的账户数据
+//                Member aMember=new Member(aid,point,credit,apassword,type);
 
-        return "login";
+                map.addAttribute("login", login);
+                map.addAttribute("accountID", login.getAccountID());
+                login.setPoint(point);
+                login.setCredit(credit);
+                map.addAttribute("credit", login.getCredit());
+                map.addAttribute("point", login.getPoint());
+                this.status.setAccountID(login.getAccountID());
+                this.status.setCredit(credit);
+                this.status.setPoint(point);
+                return "welcomeUser";
+            } else {
+                model.addAttribute("error", "Password is not correct.");
+                return "login";
+            }
+        }
     }
 
     @RequestMapping(value = "/indexUser", method = {RequestMethod.GET})
