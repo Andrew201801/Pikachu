@@ -17,60 +17,139 @@
 /* global getParticipantRegistry emit */
 
 /**
- * EarnCredit transaction
- * @param {org.pikachu2.biznet.EarnCredit} earncredit
+ * userEarnCredit transaction
+ * @param {org.pikachu2.biznet.userEarnCredit} userearncredit
  * @transaction
  */
-async function EarnCredit(earncredit) {
-
+async function userEarnCredit(userearncredit) {
   //update member nowcredit
-  earncredit.member.Info.nowCredit = earncredit.member.Info.nowCredit + earncredit.nowCredit;
-
+  userearncredit.member.Info.Credit = userearncredit.member.Info.Credit + userearncredit.Credit;
   //update member
   const memberRegistry = await getParticipantRegistry('org.pikachu2.biznet.Member');
-  await memberRegistry.update(earncredit.member);
-
-  // check if company exists on the network
-  const idRegistry = await getParticipantRegistry('org.pikachu2.biznet.Company');
-  idExists = await idRegistry.exists(earncredit.company.id);
-  if (idExists == false) {
-    throw new Error('Company does not exist - check company id');
-  }
+  await memberRegistry.update(userearncredit.member);
 }
-
  /**
- * loseCredit transaction
- * @param {org.pikachu2.biznet.LoseCredit} loseCredit
+ * userloseCredit transaction
+ * @param {org.pikachu2.biznet.userLoseCredit} userloseCredit
  * @transaction
  */
-async function LoseCredit(loseCredit) {
+async function userLoseCredit(userloseCredit) {
     //update memberID nowCredit
-    loseCredit.memberID.nowCredit = loseCredit.memberID.nowCredit - loseCredit.nowCredit
+    userloseCredit.member.Info.Credit = userloseCredit.member.Credit - userloseCredit.Credit;
   
     //update memberID
-    const memberRegistry = await getParticipantRegistry('org.pikachu2.biznet.member');
-    await memberRegistry.update(loseCredit.memberID);
-  
-    // check if company exists on the network
-    const idRegistry = await getParticipantRegistry('org.pikachu2.biznet.company');
-    idExists = await idRegistry.exists(loseCredit.company.id);
-    if (idExists == false) {
-      throw new Error('companyID does not exist - check company id');
-    }
+    const memberRegistry = await getParticipantRegistry('org.pikachu2.biznet.Member');
+    await memberRegistry.update(userloseCredit.member);
+   
   }
   
   /**
- * UpdateHistory transaction
- * @param {org.pikachu2.biznet.UpdateHistory} updatehistory
+ * companyEarnCredit transaction
+ * @param {org.pikachu2.biznet.companyEarnCredit} companyearncredit
  * @transaction
  */
-async function UpdateHistory(updatehistory) {
-    //let currParticipant = getCurrentParticipant();
-    // Get the nowcredit.
-    const toUpdateHistory=await getParticipantRegistry('org.pikachu2.biznet.Member');
-    updatehistory.member.Info.historyInfo.credit = toUpdateHistory.Info.nowCredit;
-    //get time 
-    let date=new Date();
-    updatehistory.historyInfo.createtime=date.toLocaleTimeString();
-    await historyInfo.push(updatehistory.historyInfo);
+async function companyEarnCredit(companyearncredit) {
+
+  //update company nowcredit
+  companyearncredit.company.Info.Credit = companyearncredit.company.Info.Credit + companyearncredit.Credit;
+
+  //update company
+  const companyRegistry = await getParticipantRegistry('org.pikachu2.biznet.Company');
+  await companyRegistry.update(companyearncredit.company);
+}
+ /**
+ * companyloseCredit transaction
+ * @param {org.pikachu2.biznet.companyLoseCredit} companyloseCredit
+ * @transaction
+ */
+async function companyLoseCredit(companyloseCredit) {
+    //update company Credit
+    companyloseCredit.company.Info.Credit = companyloseCredit.company.Info.Credit - companyloseCredit.Credit;
+  
+    //update company
+    const companyRegistry = await getParticipantRegistry('org.pikachu2.biznet.Company');
+    await companyRegistry.update(companyloseCredit.company);
+   
+  }
+/**
+ * EarnPoints transaction
+ * @param {org.pikachu2.biznet.userEarnPoints} userearnPoints
+ * @transaction
+ */
+async function userEarnPoints(userearnPoints) {
+
+  //update member points
+  userearnPoints.member.Info.points = userearnPoints.member.Info.points + userearnPoints.points;
+
+  //update member
+  const memberRegistry = await getParticipantRegistry('org.pikachu2.biznet.Member');
+  await memberRegistry.update(userearnPoints.member);
+
+  // check if company exists on the network
+  const companyRegistry = await getParticipantRegistry('org.pikachu2.biznet.Company');
+  companyExists = await companyRegistry.exists(userearnPoints.company.id);
+  if (companyExists == false) {
+    throw new Error('company does not exist - check company id');
+  }
+}
+/**
+ * userUsePoints transaction
+ * @param {org.pikachu2.biznet.userUsePoints} userusePoints
+ * @transaction
+ */
+async function userUsePoints(userusePoints) {
+
+  //check if member has sufficient points
+  if (userusePoints.member.Info.points < userusePoints.Info.points) {
+    throw new Error('Insufficient points');
+  }
+
+  //update member points
+  userusePoints.member.Info.points = userusePoints.member.Info.points - userusePoints.points
+
+  //update member
+  const memberRegistry = await getParticipantRegistry('org.pikachu2.biznet.Member');
+  await memberRegistry.update(userusePoints.member);
+
+  // check if company exists on the network
+  const companyRegistry = await getParticipantRegistry('org.pikachu2.biznet.Company');
+  companyExists = await partnerRegistry.exists(userusePoints.company.id);
+  if (companyExists == false) {
+    throw new Error('company does not exist - check id');
+  }
+}
+/**
+ * EarnPoints transaction
+ * @param {org.pikachu2.biznet.userEarnPoints} userearnPoints
+ * @transaction
+ */
+async function companyEarnPoints(companyearnPoints) {
+
+  //update company points
+  companyearnPoints.company.Info.points = companyearnPoints.company.Info.points + companyearnPoints.Info.points;
+
+  //update company
+  const memberRegistry = await getParticipantRegistry('org.pikachu2.biznet.Company');
+  await memberRegistry.update(companyearnPoints.company);
+}
+
+/**
+ * companyUsePoints transaction
+ * @param {org.pikachu2.biznet.companyUsePoints} companyusePoints
+ * @transaction
+ */
+async function companyUsePoints(companyusePoints) {
+
+  //check if company has sufficient points
+  if (companyusePoints.member.Info.points < companyusePoints.Info.points) {
+    throw new Error('Insufficient points');
+  }
+
+  //update company points
+  companyusePoints.company.Info.points = companyusePoints.company.Info.points - companyusePoints.Info.points
+
+  //update company
+  const companyRegistry = await getParticipantRegistry('org.pikachu2.biznet.Company');
+  await companyRegistry.update(companyusePoints.member);
+
 }
