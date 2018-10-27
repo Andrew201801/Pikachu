@@ -163,10 +163,10 @@ public class StatusController {
 
         String s1 = sendGet("http://34.220.123.35:3000/api/Company/" + id);
         String s2 = sendGet("http://35.211.105.21:3000/api/Company/" + id);
-        String s3 = sendGet("http://59.191.138.72:3000/api/Company/" + id);
+        String s3 = sendGet("http://54.191.138.172:3000/api/Company/" + id);
         String s4 = sendGet("http://34.220.123.35:3000/api/Member/" + id);
         String s5 = sendGet("http://35.211.105.21:3000/api/Member/" + id);
-        String s6 = sendGet("http://59.191.138.72:3000/api/Member/" + id);
+        String s6 = sendGet("http://54.191.138.172:3000/api/Member/" + id);
 
         if (s1.equals("False") && s2.equals("False") && s3.equals("False") && s4.equals("False") && s5.equals("False") && s6.equals("False")) {
             String typeCheck = request.getParameter("typeCheck");
@@ -231,10 +231,10 @@ public class StatusController {
         String[] s = new String[6];
         s[0] = sendGet("http://34.220.123.35:3000/api/Company/" + id);
         s[1] = sendGet("http://35.211.105.21:3000/api/Company/" + id);
-        s[2] = sendGet("http://59.191.138.72:3000/api/Company/" + id);
+        s[2] = sendGet("http://54.191.138.172:3000/api/Company/" + id);
         s[3] = sendGet("http://34.220.123.35:3000/api/Member/" + id);
         s[4] = sendGet("http://35.211.105.21:3000/api/Member/" + id);
-        s[5] = sendGet("http://59.191.138.72:3000/api/Member/" + id);
+        s[5] = sendGet("http://54.191.138.172:3000/api/Member/" + id);
         int flag = -1;
         for (int i = 0; i < 6; i++) {
             if (!s[i].equals("False")) {
@@ -249,8 +249,8 @@ public class StatusController {
             JSONObject job = JSONObject.fromObject(s[flag]);
             if (password.equals(JSONObject.fromObject(job.getString("Info")).getString("password"))) {
 //                String aid=job.getString("mID");
-                String point=JSONObject.fromObject(job.getString("Info")).getString("points");
-                String credit=JSONObject.fromObject(job.getString("Info")).getString("Credit");
+                String point = JSONObject.fromObject(job.getString("Info")).getString("points");
+                String credit = JSONObject.fromObject(job.getString("Info")).getString("Credit");
 //                String apassword=JSONObject.fromObject(job.getString("Info")).getString("password");
 //                String type=job.getString("$class").substring(20);
 
@@ -309,15 +309,57 @@ public class StatusController {
             return transaction(model);
         }
 
-        //TODO:判断对方用户名是否会不存在
+//        TODO:判断对方用户名是否会不存在
 //        if(对方用户名不存在){
 //            model.addAttribute("error", "invalid Account ID");
 //            return "transaction";
 //        }
-        //TODO:上面的需要实现
+//        TODO:上面的需要实现
 
+        String frompoint = status.getPoint();
+        String fromid = status.getAccountID();
+        String fromcredit = status.getCredit();
 
+        String toid = transaction.getAccountID();
+        String point = transaction.getPoint();
+
+        if (Integer.parseInt(point) > Integer.parseInt(frompoint)) {
+            model.addAttribute("error", "Point is not enough.");
+            return "transaction";
+        }
+
+        String[] s = new String[6];
+
+        //需要修改IP
+        s[0] = sendGet("http://34.220.123.35:3000/api/Company/" + toid);
+        s[1] = sendGet("http://35.211.105.21:3000/api/Company/" + toid);
+        s[2] = sendGet("http://54.191.138.172:3000/api/Company/" + toid);
+        s[3] = sendGet("http://34.220.123.35:3000/api/Member/" + toid);
+        s[4] = sendGet("http://35.211.105.21:3000/api/Member/" + toid);
+        s[5] = sendGet("http://54.191.138.172:3000/api/Member/" + toid);
+        int flag = -1;
+        for (int i = 0; i < 6; i++) {
+            if (!s[i].equals("False")) {
+                flag = i;
+                break;
+            }
+        }
+        if (flag == -1) {
+            model.addAttribute("error", "Account ID is not found.");
+            return "transaction";
+        }
+        JSONObject job = JSONObject.fromObject(s[flag]);
+        String credit = JSONObject.fromObject(job.getString("Info")).getString("Credit");
+        Boolean C2C = Integer.parseInt(credit) < 33 && Integer.parseInt(fromcredit) < 33;
+        Boolean C2B = Integer.parseInt(credit) < 66 && Integer.parseInt(fromcredit) < 33;
+        Boolean B2C = Integer.parseInt(credit) < 33 && Integer.parseInt(fromcredit) < 66;
+        if (C2C || C2B || C2C) {
+            model.addAttribute("error", "Credit limited.");
+            return "transaction";
+        }
         return "success";
+
+
     }
 
 

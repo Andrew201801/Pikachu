@@ -185,8 +185,8 @@
 <div class="pusher">
     <div class="ui inverted vertical footer segment">
         <div class="ui center aligned container">
-            <h3 class="ui header" style="color: white">Pikachu Team of Hackathon</h3>
-            <p> Support for the continued development of Semantic UI comes directly from the community.</p>
+            <h3 class="ui header" style="color: white">Pikachu Team from CUFE</h3>
+            <p>Pika Pika</p>
         </div>
     </div>
 </div>

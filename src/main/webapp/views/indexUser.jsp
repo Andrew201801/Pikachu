@@ -164,9 +164,11 @@
 
         <div class="ui text container">
             <h1 class="ui inverted header">
-                Pikachu BlockChain
+                Airline Credit Points Demo
             </h1>
-            <h2>Demo HomePage</h2>
+            <h2>Pikachu Team from CUFE</h2>
+            <br>
+            <a class="ui huge primary button" href="/login">Get Started <i class="right arrow icon"></i></a>
         </div>
 
     </div>
@@ -175,18 +177,17 @@
         <div class="ui middle aligned stackable grid container">
             <div class="row">
                 <div class="eight wide column">
-                    <h3 class="ui header">Demo</h3>
-                    <p>We can give your company superpowers to do things that they never thought possible. Let us delight your customers and empower your needs...through pure data analytics.</p>
-                    <h3 class="ui header">We Make Bananas That Can Dance</h3>
-                    <p>Yes that's right, you thought it was the stuff of dreams, but even bananas can be bioengineered.</p>
+                    <h3 class="ui header">Background Info</h3>
+                    <p>Past few decades have witnessed the blossom of technology as well as the prosperity of economy
+                        which have largely altered every edge of society, including airline industry. It is widely
+                        acknowledged that with the rapid enhancement of technology, the use of airline credit points in
+                        life is also being more diverse.</p>
+                    <h3 class="ui header">Potential Problem</h3>
+                    <p>It is also proved that malignant trading behavior occurs in the process of using airline
+                        points, such as resell airline points by abnormal ways.</p>
                 </div>
                 <div class="six wide right floated column">
-                    <img src="/image/Demo.png" class="ui large bordered rounded image">
-                </div>
-            </div>
-            <div class="row">
-                <div class="center aligned column">
-                    <a class="ui huge button">Check Them Out</a>
+                    <img src="/image/arbitrageModel.png" class="ui large bordered rounded image">
                 </div>
             </div>
         </div>
@@ -197,38 +198,23 @@
         <div class="ui equal width stackable internally celled grid">
             <div class="center aligned row">
                 <div class="column">
-                    <h3>"What a Company"</h3>
-                    <p>That is what they all say about us</p>
+                    <h3>Member</h3>
+                    <p>Members have right to use their points via certificated company.</p>
                 </div>
                 <div class="column">
-                    <h3>"I shouldn't have gone with their competitor."</h3>
-                    <p>
-                        <img src="/image/Placeholder.png" class="ui avatar image"> <b>Nan</b> Chief Fun Officer Acme Toys
-                    </p>
+                    <h3>Company</h3>
+                    <p>Companies have right to use their points to provide services for customers, like providing a
+                        legal way to redeem credit-points-goods for customers</p>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="ui vertical stripe segment">
-        <div class="ui text container">
-            <h3 class="ui header">Breaking The Grid, Grabs Your Attention</h3>
-            <p>Instead of focusing on content creation and hard work, we have learned how to master the art of doing nothing by providing massive amounts of whitespace and generic content that can seem massive, monolithic and worth your attention.</p>
-            <a class="ui large button">Read More</a>
-            <h4 class="ui horizontal header divider">
-                <a href="#">Case Studies</a>
-            </h4>
-            <h3 class="ui header">Did We Tell You About Our Bananas?</h3>
-            <p>Yes I know you probably disregarded the earlier boasts as non-sequitur filler content, but its really true. It took years of gene splicing and combinatory DNA research, but our bananas can really dance.</p>
-            <a class="ui large button">I'm Still Quite Interested</a>
         </div>
     </div>
 
 
     <div class="ui inverted vertical footer segment">
         <div class="ui center aligned container">
-            <h3 class="ui header" style="color: white">Pikachu Team of Hackathon</h3>
-            <p> Support for the continued development of Semantic UI comes directly from the community.</p>
+            <h3 class="ui header" style="color: white">Pikachu Team from CUFE</h3>
+            <p>Pika Pika</p>
         </div>
     </div>
 </div>
