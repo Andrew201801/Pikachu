@@ -117,7 +117,7 @@
             </a>
             <a class="item" href="/indexUser">Home</a>
             <a class="active item" href="/welcomeUser">User Center</a>
-            <a class="item" href="/trade">Trade</a>
+            <a class="item" href="/transaction">Transaction</a>
             <div class="right item">
                 <div class="ui inverted button disabled">
                     ID:&nbsp;${sessionScope.login.accountID}
@@ -143,7 +143,7 @@
 
 
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <div class="pusher">
     <div class="ui inverted vertical footer segment">
         <div class="ui center aligned container">

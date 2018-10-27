@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
     <!-- Site Properties -->
-    <title>Trade</title>
+    <title>Success</title>
     <%--<link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.css">--%>
     <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.css">
 
@@ -116,11 +116,17 @@
                 <i class="sidebar icon"></i>
             </a>
             <a class="item" href="/indexUser">Home</a>
-            <a class="item" href="/welcomeUser">User Center</a>
-            <a class="active item" href="/trade">Trade</a>
+            <a class="active item" href="/welcomeUser">User Center</a>
+            <a class="item" href="/transaction">Transaction</a>
             <div class="right item">
                 <div class="ui inverted button disabled">
-                    ${sessionScope.login.accountID}
+                    ID:&nbsp;${sessionScope.login.accountID}
+                </div>
+                <div class="ui inverted button disabled">
+                    Credit:&nbsp;${sessionScope.login.credit}
+                </div>
+                <div class="ui inverted button disabled">
+                    Point:&nbsp;${sessionScope.login.point}
                 </div>
                 <a class="ui inverted button" href="/logout">Sign Out</a>
             </div>
@@ -130,14 +136,18 @@
 <br><br><br><br><br><br><br><br><br>
 
 <div class="ui text container">
-    <h2 class="ui header">Welcome Back</h2>
+    <h2 class="ui header">Success</h2>
     <br>
+</div>
+
+<div class="ui text container">
+    <h3>You need to re-Login to update the dataset</h3>
+    <a class="ui fluid large submit button" type="submit" href="/logout">re-Login</a>
 </div>
 
 
 
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <div class="pusher">
     <div class="ui inverted vertical footer segment">
         <div class="ui center aligned container">

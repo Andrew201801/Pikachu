@@ -3,8 +3,8 @@
 <html>
 <head>
     <!-- Standard Meta -->
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
     <!-- Site Properties -->
@@ -23,18 +23,22 @@
             min-height: 70px;
             padding: 1em 0em;
         }
+
         .masthead .logo.item img {
             margin-right: 1em;
         }
+
         .masthead .ui.menu .ui.button {
             margin-left: 0.5em;
         }
+
         .masthead h1.ui.header {
             margin-top: 3em;
             margin-bottom: 0em;
             font-size: 4em;
             font-weight: normal;
         }
+
         .masthead h2 {
             font-size: 1.7em;
             font-weight: normal;
@@ -43,19 +47,24 @@
         .ui.vertical.stripe {
             padding: 8em 0em;
         }
+
         .ui.vertical.stripe h3 {
             font-size: 2em;
         }
+
         .ui.vertical.stripe .button + h3,
         .ui.vertical.stripe p + h3 {
             margin-top: 3em;
         }
+
         .ui.vertical.stripe .floated.image {
             clear: both;
         }
+
         .ui.vertical.stripe p {
             font-size: 1.33em;
         }
+
         .ui.vertical.stripe .horizontal.divider {
             margin: 3em 0em;
         }
@@ -63,6 +72,7 @@
         .quote.stripe.segment {
             padding: 0em;
         }
+
         .quote.stripe.segment .grid .column {
             padding-top: 5em;
             padding-bottom: 5em;
@@ -80,20 +90,25 @@
             .ui.fixed.menu {
                 display: none !important;
             }
+
             .secondary.pointing.menu .item,
             .secondary.pointing.menu .menu {
                 display: none;
             }
+
             .secondary.pointing.menu .toc.item {
                 display: block;
             }
+
             .masthead.segment {
                 min-height: 350px;
             }
+
             .masthead h1.ui.header {
                 font-size: 2em;
                 margin-top: 1.5em;
             }
+
             .masthead h2 {
                 margin-top: 0.5em;
                 font-size: 1.5em;
@@ -133,10 +148,11 @@
 <div class="text ui container">
     <br>
     <h1 class="ui dividing header">Sign Up</h1>
-    <br><br>
+    <br>
     <form:form method="POST" modelAttribute="member" class="ui form">
-        <h3 class="ui dividing header">Login Information</h3>
+        <%--<h3 class="ui dividing header">Login Information</h3>--%>
         <div class="ui form">
+            <br>
             <div class="field">
                 <label>Account ID</label>
                 <form:input type="text" path="accountID" placeholder="Account ID"/>
@@ -144,6 +160,7 @@
                     <form:errors path="accountID" class="help-inline"/>
                 </div>
             </div>
+            <br>
             <div class="field">
                 <label>Password</label>
                 <form:input type="password" path="password" placeholder="Password"/>
@@ -151,38 +168,29 @@
                     <form:errors path="password" class="help-inline"/>
                 </div>
             </div>
+            <br>
             <div class="field">
                 <label>Type</label>
-                <select class="ui compact selection dropdown" name="typeCheck">
-                    <option value="member">Member</option>
-                    <option value="company">Company</option>
-                </select>
+                <div class="two wide field">
+                    <select class="ui compact selection dropdown" name="typeCheck">
+                        <option value="member">Member</option>
+                        <option value="company">Company</option>
+                    </select>
+                </div>
             </div>
-
-            <%--<div class="field">--%>
-                <%--<div class="ui checkbox">--%>
-                    <%--<input type="checkbox" name="typeCheck" tabindex="0" class="hidden">--%>
-                    <%--<label>Register as Company</label>--%>
-                <%--</div>--%>
-            <%--</div>--%>
+        </div>
+        <div class="field">
+            <div class="error" style="color: red">
+                    ${error}
+            </div>
         </div>
 
-        <br><br>
-
-
-
-        <%--<div class="field">--%>
-            <%--<label>Developer Only</label>--%>
-            <%--<form:input type="text" name="asset" path="asset" placeholder="Asset"/>--%>
-            <%--<div class="has-error" style="color: red">--%>
-                <%--<form:errors path="asset" class="help-inline"/>--%>
-            <%--</div>--%>
-        <%--</div>--%>
+        <h1 class="ui dividing header"></h1>
         <button class="ui button" type="submit">Submit</button>
-        <div class="ui error message"></div>
+        <%--<div class="ui error message"></div>--%>
     </form:form>
 </div>
-<br><br><br>
+<br><br><br><br><br><br>
 <div class="pusher">
     <div class="ui inverted vertical footer segment">
         <div class="ui center aligned container">

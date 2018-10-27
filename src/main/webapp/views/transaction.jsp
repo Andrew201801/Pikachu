@@ -3,13 +3,14 @@
 <html>
 <head>
     <!-- Standard Meta -->
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
     <!-- Site Properties -->
-    <title>Welcome User</title>
+    <title>Transaction</title>
     <%--<link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.css">--%>
+    <link rel="stylesheet" type="text/css" href="/semantic/dist/components/checkbox.css">
     <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.css">
 
     <style type="text/css">
@@ -22,18 +23,22 @@
             min-height: 70px;
             padding: 1em 0em;
         }
+
         .masthead .logo.item img {
             margin-right: 1em;
         }
+
         .masthead .ui.menu .ui.button {
             margin-left: 0.5em;
         }
+
         .masthead h1.ui.header {
             margin-top: 3em;
             margin-bottom: 0em;
             font-size: 4em;
             font-weight: normal;
         }
+
         .masthead h2 {
             font-size: 1.7em;
             font-weight: normal;
@@ -42,19 +47,24 @@
         .ui.vertical.stripe {
             padding: 8em 0em;
         }
+
         .ui.vertical.stripe h3 {
             font-size: 2em;
         }
+
         .ui.vertical.stripe .button + h3,
         .ui.vertical.stripe p + h3 {
             margin-top: 3em;
         }
+
         .ui.vertical.stripe .floated.image {
             clear: both;
         }
+
         .ui.vertical.stripe p {
             font-size: 1.33em;
         }
+
         .ui.vertical.stripe .horizontal.divider {
             margin: 3em 0em;
         }
@@ -62,6 +72,7 @@
         .quote.stripe.segment {
             padding: 0em;
         }
+
         .quote.stripe.segment .grid .column {
             padding-top: 5em;
             padding-bottom: 5em;
@@ -79,20 +90,25 @@
             .ui.fixed.menu {
                 display: none !important;
             }
+
             .secondary.pointing.menu .item,
             .secondary.pointing.menu .menu {
                 display: none;
             }
+
             .secondary.pointing.menu .toc.item {
                 display: block;
             }
+
             .masthead.segment {
                 min-height: 350px;
             }
+
             .masthead h1.ui.header {
                 font-size: 2em;
                 margin-top: 1.5em;
             }
+
             .masthead h2 {
                 margin-top: 0.5em;
                 font-size: 1.5em;
@@ -103,6 +119,12 @@
     </style>
 
     <script src="/js/jquery.min.js"></script>
+    <script>
+        $('.ui.checkbox').checkbox();   //使得单选框可以被选中
+    </script>
+    <script src="/semantic/dist/components/checkbox.js"></script>
+
+
     <script src="/semantic/dist/semantic.js"></script>
 
 
@@ -116,8 +138,8 @@
                 <i class="sidebar icon"></i>
             </a>
             <a class="item" href="/indexUser">Home</a>
-            <a class="active item" href="/welcomeUser">User Center</a>
-            <a class="item" href="/transaction">Transaction</a>
+            <a class="item" href="/welcomeUser">User Center</a>
+            <a class="active item" href="/transaction">Transaction</a>
             <div class="right item">
                 <div class="ui inverted button disabled">
                     ID:&nbsp;${sessionScope.login.accountID}
@@ -133,19 +155,44 @@
         </div>
     </div>
 </div>
-<br><br><br><br><br><br><br><br><br>
-
-<div class="ui text container">
-    <h2 class="ui header">Welcome Back</h2>
+<div class="text ui container">
     <br>
+    <h1 class="ui dividing header">Transaction</h1>
+    <br>
+    <form:form method="POST" modelAttribute="transaction" class="ui form">
+        <%--<h3 class="ui dividing header">Login Information</h3>--%>
+        <div class="ui form">
+            <br>
+            <div class="field">
+                <label>Account ID</label>
+                <form:input type="text" path="accountID" placeholder="Account ID"/>
+                <div class="has-error" style="color: red">
+                    <form:errors path="accountID" class="help-inline"/>
+                </div>
+            </div>
+            <br>
+            <div class="field">
+                <label>Point</label>
+                <form:input type="text" path="point" placeholder="Transaction Point"/>
+                <div class="has-error" style="color: red">
+                    <form:errors path="point" class="help-inline"/>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <div class="error" style="color: red">
+                    ${error}
+            </div>
+        </div>
+
+        <h1 class="ui dividing header"></h1>
+        <button class="ui button" type="submit">Submit</button>
+        <%--<div class="ui error message"></div>--%>
+    </form:form>
 </div>
-
-
-
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br>
 <div class="pusher">
-    <div class="ui inverted vertical footer segment">
+    <div class="ui inverted vertical footer segment fixed">
         <div class="ui center aligned container">
             <h3 class="ui header" style="color: white">Pikachu Team of Hackathon</h3>
             <p> Support for the continued development of Semantic UI comes directly from the community.</p>
@@ -156,4 +203,3 @@
 
 </body>
 </html>
-
