@@ -1,7 +1,5 @@
 # Pikachu积分信誉系统
 
-[TOC]
-
 ## 分工
 
 - 区块链&&架构：屈福阳
@@ -30,7 +28,7 @@
 △信用指数可以是0-100中任一整数，最低信任级别、中间信任级别、最高信任级别的划分标准为33、66，最低信任级别的两个个人/公司不能进行交易，一个最低信任层级和一个中间信任层级的个人/公司之间无法进行交易；
 
 △三个不同的信用等级对应三条链，分别对应三个不同的API接口。
-<img src="../src/main/webapp/statics/image/1.jpeg">
+<img src="https://github.com/Andrew201801/Pikachu/blob/master/1.jpeg">
 
 - 对市场中投机套利行为的认定：
 
@@ -42,6 +40,6 @@
 
 △黄牛：积分有大量且基本等额的上升下降
 
-<img src="../src/main/webapp/statics/image/2.jpg">
-<img src="../src/main/webapp/statics/image/3.jpg">
+<img src="https://github.com/Andrew201801/Pikachu/blob/master/2.jpg">
+<img src="https://github.com/Andrew201801/Pikachu/blob/master/3.jpg">
 
