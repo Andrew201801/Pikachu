@@ -810,88 +810,88 @@ public class StatusController {
             System.out.println(fromData);
             System.out.println(toData);
 
-//          更新信用信息
-            Boolean a = Integer.parseInt(fromcredit) < 33 && (Integer.parseInt(fromcredit) + 1) == 33;
-            Boolean b = Integer.parseInt(fromcredit) < 66 && (Integer.parseInt(fromcredit) + 1) == 66;
-            Boolean c = Integer.parseInt(tocredit) < 33 && (Integer.parseInt(tocredit) + 1) == 33;
-            Boolean d = Integer.parseInt(tocredit) < 66 && Integer.parseInt(tocredit) + 1 == 66;
-
-
-            if (a) {
-//                  C升到B
-                sendDel("http://" + fromIP + "/api/Company/" + fromid);
-                String Data = "{\n" +
-                        "  \"id\": \"" + fromid + "\",\n" +
-                        "  \"Info\": {\n" +
-                        "    \"points\": " + (Integer.parseInt(frompoint) - Integer.parseInt(point)) + ",\n" +
-                        "    \"Credit\": " + (Integer.parseInt(fromcredit) + 2) + ",\n" +
-                        "    \"password\": \"" + frompassword + "\"\n" +
-                        "  }\n" +
-                        "}";
-                sendPost("http://" + "35.211.105.21" + "/api/Company", Data);
-
-            } else if (b) {
-//                B升到A
-                sendDel("http://" + fromIP + "/api/Company/" + fromid);
-                String Data = "{\n" +
-                        "  \"id\": \"" + fromid + "\",\n" +
-                        "  \"Info\": {\n" +
-                        "    \"points\": " + (Integer.parseInt(frompoint) - Integer.parseInt(point)) + ",\n" +
-                        "    \"Credit\": " + (Integer.parseInt(fromcredit) + 2) + ",\n" +
-                        "    \"password\": \"" + frompassword + "\"\n" +
-                        "  }\n" +
-                        "}";
-                sendPost("http://" + "34.220.123.35" + "/api/Company", Data);
-            } else {
-                String updateFromCredit = "{\n" +
-                        "  \"id\": \"" + fromid + "\",\n" +
-                        "  \"Info\": {\n" +
-                        "    \"points\": " + (Integer.parseInt(frompoint) - Integer.parseInt(point)) + ",\n" +
-                        "    \"Credit\": " + (Integer.parseInt(fromcredit) + 1) + ",\n" +
-                        "    \"password\": \"" + frompassword + "\"\n" +
-                        "  }\n" +
-                        "}";
-
-                sendPut("http://" + fromIP + "/api/Company/" + fromid, updateFromCredit);
-
-            }
-
-            if (c) {
-//                C升到B
-                sendDel("http://" + toIP + "/api/Member/" + toid);
-                String Data = "{\n" +
-                        "  \"id\": \"" + toid + "\",\n" +
-                        "  \"Info\": {\n" +
-                        "    \"points\": " + (Integer.parseInt(topoint) + Integer.parseInt(point)) + ",\n" +
-                        "    \"Credit\": " + (Integer.parseInt(tocredit) + 2) + ",\n" +
-                        "    \"password\": \"" + topassword + "\"\n" +
-                        "  }\n" +
-                        "}";
-                sendPost("http://" + "35.211.105.21" + "/api/Member", Data);
-            } else if (d) {
-//                B升到A
-                sendDel("http://" + toIP + "/api/Member/" + toid);
-                String Data = "{\n" +
-                        "  \"id\": \"" + toid + "\",\n" +
-                        "  \"Info\": {\n" +
-                        "    \"points\": " + (Integer.parseInt(topoint) + Integer.parseInt(point)) + ",\n" +
-                        "    \"Credit\": " + (Integer.parseInt(tocredit) + 2) + ",\n" +
-                        "    \"password\": \"" + topassword + "\"\n" +
-                        "  }\n" +
-                        "}";
-                sendPost("http://" + "34.220.123.35" + "/api/Member", Data);
-            } else {
-                String updateToCredit = "{\n" +
-                        "  \"id\": \"" + toid + "\",\n" +
-                        "  \"Info\": {\n" +
-                        "    \"points\": " + (Integer.parseInt(topoint) + Integer.parseInt(point)) + ",\n" +
-                        "    \"Credit\": " + (Integer.parseInt(tocredit) + 1) + ",\n" +
-                        "    \"password\": \"" + topassword + "\"\n" +
-                        "  }\n" +
-                        "}";
-                sendPut("http://" + toIP + ":3000/api/Member/" + toid, updateToCredit);
-            }
-        }
+////          更新信用信息
+//            Boolean a = Integer.parseInt(fromcredit) < 33 && (Integer.parseInt(fromcredit) + 1) == 33;
+//            Boolean b = Integer.parseInt(fromcredit) < 66 && (Integer.parseInt(fromcredit) + 1) == 66;
+//            Boolean c = Integer.parseInt(tocredit) < 33 && (Integer.parseInt(tocredit) + 1) == 33;
+//            Boolean d = Integer.parseInt(tocredit) < 66 && Integer.parseInt(tocredit) + 1 == 66;
+//
+//
+//            if (a) {
+////                  C升到B
+//                sendDel("http://" + fromIP + "/api/Company/" + fromid);
+//                String Data = "{\n" +
+//                        "  \"id\": \"" + fromid + "\",\n" +
+//                        "  \"Info\": {\n" +
+//                        "    \"points\": " + (Integer.parseInt(frompoint) - Integer.parseInt(point)) + ",\n" +
+//                        "    \"Credit\": " + (Integer.parseInt(fromcredit) + 2) + ",\n" +
+//                        "    \"password\": \"" + frompassword + "\"\n" +
+//                        "  }\n" +
+//                        "}";
+//                sendPost("http://" + "35.211.105.21" + "/api/Company", Data);
+//
+//            } else if (b) {
+////                B升到A
+//                sendDel("http://" + fromIP + "/api/Company/" + fromid);
+//                String Data = "{\n" +
+//                        "  \"id\": \"" + fromid + "\",\n" +
+//                        "  \"Info\": {\n" +
+//                        "    \"points\": " + (Integer.parseInt(frompoint) - Integer.parseInt(point)) + ",\n" +
+//                        "    \"Credit\": " + (Integer.parseInt(fromcredit) + 2) + ",\n" +
+//                        "    \"password\": \"" + frompassword + "\"\n" +
+//                        "  }\n" +
+//                        "}";
+//                sendPost("http://" + "34.220.123.35" + "/api/Company", Data);
+//            } else {
+//                String updateFromCredit = "{\n" +
+//                        "  \"id\": \"" + fromid + "\",\n" +
+//                        "  \"Info\": {\n" +
+//                        "    \"points\": " + (Integer.parseInt(frompoint) - Integer.parseInt(point)) + ",\n" +
+//                        "    \"Credit\": " + (Integer.parseInt(fromcredit) + 1) + ",\n" +
+//                        "    \"password\": \"" + frompassword + "\"\n" +
+//                        "  }\n" +
+//                        "}";
+//
+//                sendPut("http://" + fromIP + "/api/Company/" + fromid, updateFromCredit);
+//
+//            }
+//
+//            if (c) {
+////                C升到B
+//                sendDel("http://" + toIP + "/api/Member/" + toid);
+//                String Data = "{\n" +
+//                        "  \"id\": \"" + toid + "\",\n" +
+//                        "  \"Info\": {\n" +
+//                        "    \"points\": " + (Integer.parseInt(topoint) + Integer.parseInt(point)) + ",\n" +
+//                        "    \"Credit\": " + (Integer.parseInt(tocredit) + 2) + ",\n" +
+//                        "    \"password\": \"" + topassword + "\"\n" +
+//                        "  }\n" +
+//                        "}";
+//                sendPost("http://" + "35.211.105.21" + "/api/Member", Data);
+//            } else if (d) {
+////                B升到A
+//                sendDel("http://" + toIP + "/api/Member/" + toid);
+//                String Data = "{\n" +
+//                        "  \"id\": \"" + toid + "\",\n" +
+//                        "  \"Info\": {\n" +
+//                        "    \"points\": " + (Integer.parseInt(topoint) + Integer.parseInt(point)) + ",\n" +
+//                        "    \"Credit\": " + (Integer.parseInt(tocredit) + 2) + ",\n" +
+//                        "    \"password\": \"" + topassword + "\"\n" +
+//                        "  }\n" +
+//                        "}";
+//                sendPost("http://" + "34.220.123.35" + "/api/Member", Data);
+//            } else {
+//                String updateToCredit = "{\n" +
+//                        "  \"id\": \"" + toid + "\",\n" +
+//                        "  \"Info\": {\n" +
+//                        "    \"points\": " + (Integer.parseInt(topoint) + Integer.parseInt(point)) + ",\n" +
+//                        "    \"Credit\": " + (Integer.parseInt(tocredit) + 1) + ",\n" +
+//                        "    \"password\": \"" + topassword + "\"\n" +
+//                        "  }\n" +
+//                        "}";
+//                sendPut("http://" + toIP + ":3000/api/Member/" + toid, updateToCredit);
+//            }
+//        }
 
 
         return "success";
