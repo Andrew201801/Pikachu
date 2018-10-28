@@ -192,7 +192,7 @@
                         points, such as resell airline points by abnormal ways.</p>
                 </div>
                 <div class="six wide right floated column">
-                    <img src="/image/arbitrageModel.png" class="ui huge bordered rounded image">
+                    <img src="/image/arbitrageModel.png" class="ui large bordered rounded image">
                 </div>
             </div>
         </div>

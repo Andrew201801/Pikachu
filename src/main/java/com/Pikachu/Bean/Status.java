@@ -10,6 +10,8 @@ public class Status {
 
     private String point;
 
+    private String type;
+
     public String getAccountID() {
         return accountID;
     }
@@ -26,6 +28,10 @@ public class Status {
         return point;
     }
 
+    public String getType() {
+        return type;
+    }
+
     public void setAccountID(String accountID) {
         this.accountID = accountID;
     }
@@ -40,5 +46,9 @@ public class Status {
 
     public void setPoint(String point) {
         this.point = point;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
