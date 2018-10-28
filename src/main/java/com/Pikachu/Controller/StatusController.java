@@ -229,21 +229,21 @@ public class StatusController {
         return result;
     }
 
-    public String getHistoryById(String aid){
+    public String getHistoryById(String aid) {
 
-        String id=status.getAccountID();
+        String id = status.getAccountID();
 //      type里填充类型，注意大小写
-        String type=status.getType();
-        String credit=status.getCredit();
+        String type = status.getType();
+        String credit = status.getCredit();
         String[] s = new String[4];
 
 //       信用最低那条的IP
-        if(Integer.parseInt(credit)<33&&type.equals("Company")){
+        if (Integer.parseInt(credit) < 33 && type.equals("Company")) {
             s[0] = sendGet("http://35.211.105.21:3000/api/companyEarnPoints");
             s[1] = "False";
             s[2] = sendGet("http://35.211.105.21:3000/api/companyUsePoints");
             s[3] = "False";
-        }else if(Integer.parseInt(credit)<33&&type.equals("Member")){
+        } else if (Integer.parseInt(credit) < 33 && type.equals("Member")) {
             s[0] = sendGet("http://35.211.105.21:3000/api/userEarnPoints");
             s[1] = sendGet("http://35.211.105.21:3000/api/userEarnPointsFromUser");
             s[2] = sendGet("http://35.211.105.21:3000/api/userUsePoints");
@@ -251,12 +251,12 @@ public class StatusController {
         }
 
 //       信用最中间那条的IP
-        else if(Integer.parseInt(credit)<66&&type.equals("Company")){
+        else if (Integer.parseInt(credit) < 66 && type.equals("Company")) {
             s[0] = sendGet("http://35.211.105.21:3000/api/companyEarnPoints");
             s[1] = "False";
             s[2] = sendGet("http://35.211.105.21:3000/api/companyUsePoints");
             s[3] = "False";
-        }else if(Integer.parseInt(credit)<66&&type.equals("Member")){
+        } else if (Integer.parseInt(credit) < 66 && type.equals("Member")) {
             s[0] = sendGet("http://35.211.105.21:3000/api/userEarnPoints");
             s[1] = sendGet("http://35.211.105.21:3000/api/userEarnPointsFromUser");
             s[2] = sendGet("http://35.211.105.21:3000/api/userUsePoints");
@@ -264,47 +264,47 @@ public class StatusController {
         }
 
 //       信用最高那条的IP
-        else if(Integer.parseInt(credit)>66&&type.equals("Company")){
+        else if (Integer.parseInt(credit) > 66 && type.equals("Company")) {
             s[0] = sendGet("http://35.211.105.21:3000/api/companyEarnPoints");
             s[1] = "False";
             s[2] = sendGet("http://35.211.105.21:3000/api/companyUsePoints");
             s[3] = "False";
-        }else if(Integer.parseInt(credit)>66&&type.equals("Member")){
+        } else if (Integer.parseInt(credit) > 66 && type.equals("Member")) {
             s[0] = sendGet("http://35.211.105.21:3000/api/userEarnPoints");
             s[1] = sendGet("http://35.211.105.21:3000/api/userEarnPointsFromUser");
             s[2] = sendGet("http://35.211.105.21:3000/api/userUsePoints");
             s[3] = sendGet("http://35.211.105.21:3000/api/userUsePointsToUser");
         }
 
-        JSONArray cleandata=new JSONArray();
-        int Earncount=0;
-        int Usecount=0;
-        for(int i=0;i<4;i++){
+        JSONArray cleandata = new JSONArray();
+        int Earncount = 0;
+        int Usecount = 0;
+        for (int i = 0; i < 4; i++) {
             JSONArray jarray = JSONArray.fromObject(s[i]);
-            for(int j=0;j<jarray.size();j++){
-                if(s[i].equals("False")){
+            for (int j = 0; j < jarray.size(); j++) {
+                if (s[i].equals("False")) {
                     continue;
                 }
                 JSONObject job = jarray.getJSONObject(j);
-                if(type.equals("Company")&&job.getString("company").equals("resource:org.pikachu2.biznet.Company#"+id)){
+                if (type.equals("Company") && job.getString("Company").equals("resource:org.pikachu2.biznet.Company#" + id)) {
                     cleandata.add(job);
-                    if(i<2){
+                    if (i < 2) {
                         Earncount++;
-                    }else {
+                    } else {
                         Usecount++;
                     }
                 }
-                if(type.equals("Member")&&job.getString("member").equals("resource:org.pikachu2.biznet.Member#"+id)){
+                if (type.equals("Member") && job.getString("Member").equals("resource:org.pikachu2.biznet.Member#" + id)) {
                     cleandata.add(job);
-                    if(i<2){
+                    if (i < 2) {
                         Earncount++;
-                    }else{
+                    } else {
                         Usecount++;
                     }
                 }
             }
         }
-        if(Earncount>=5&&Usecount>=5&&Earncount+Usecount>=15){
+        if (Earncount >= 5 && Usecount >= 5 && Earncount + Usecount >= 15) {
             return "Liar!";
         }
         return cleandata.toString();
@@ -348,7 +348,7 @@ public class StatusController {
             String typeCheck = request.getParameter("typeCheck");
 //        System.out.println(typeCheck);
 
-            if (typeCheck.equals("company")) {
+            if (typeCheck.equals("Company")) {
                 member.setCredit("80");
                 member.setPoint("100");
                 map.addAttribute("login", member);
@@ -429,7 +429,7 @@ public class StatusController {
                 String point = JSONObject.fromObject(job.getString("Info")).getString("points");
                 String credit = JSONObject.fromObject(job.getString("Info")).getString("Credit");
 //                String apassword=JSONObject.fromObject(job.getString("Info")).getString("password");
-                String type=job.getString("$class").substring(20);
+                String type = job.getString("$class").substring(20);
 
 //               储存链上获取的账户数据
 //                Member aMember=new Member(aid,point,credit,apassword,type);
@@ -580,7 +580,7 @@ public class StatusController {
         String useurl = "";
         String earnurl = "";
 
-        if (fromtype.equals("member") && totype.equals("member")) {
+        if (fromtype.equals("Member") && totype.equals("Member")) {
 
 //            添加交易记录
             useurl = "http://" + fromIP + ":3000/api/" + "userUsePointsToUser";
@@ -684,7 +684,7 @@ public class StatusController {
         }
 
 
-        if (fromtype.equals("member") && totype.equals("company")) {
+        if (fromtype.equals("Member") && totype.equals("Company")) {
             //            添加交易记录
             useurl = "http://" + fromIP + ":3000/api/" + "userUsePoints";
             earnurl = "http://" + toIP + ":3000/api/" + "companyEarnPoints";
@@ -788,10 +788,10 @@ public class StatusController {
             }
         }
 
-        if (fromtype.equals("company") && totype.equals("member")) {
+        if (fromtype.equals("Company") && totype.equals("Member")) {
             //            添加交易记录
-            useurl = "http://" + fromIP + ":3000/api/" + "companyUsePoints";
-            earnurl = "http://" + toIP + ":3000/api/" + "userEarnPoints";
+            useurl = "http://" + "35.211.105.21" + ":3000/api/" + "companyUsePoints";
+            earnurl = "http://" + "35.211.105.21" + ":3000/api/" + "userEarnPoints";
 
             String fromData = "{\n" +
                     "  \"points\": " + point + ",\n" +
@@ -807,6 +807,8 @@ public class StatusController {
 
             sendPost(useurl, fromData);
             sendPost(earnurl, toData);
+            System.out.println(fromData);
+            System.out.println(toData);
 
 //          更新信用信息
             Boolean a = Integer.parseInt(fromcredit) < 33 && (Integer.parseInt(fromcredit) + 1) == 33;

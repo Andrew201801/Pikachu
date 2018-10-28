@@ -173,8 +173,8 @@
                 <label>Type</label>
                 <div class="two wide field">
                     <select class="ui compact selection dropdown" name="typeCheck">
-                        <option value="member">Member</option>
-                        <option value="company">Company</option>
+                        <option value="Member">Member</option>
+                        <option value="Company">Company</option>
                     </select>
                 </div>
             </div>
